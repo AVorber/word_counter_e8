@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main_page %}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input#address {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        button {
+            height: 40px;
+            font-size: 18px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div class="main-content">
+        <div class="row">
+            <form method="POST" class="main-form">
+                {{ form.csrf_token }}
+                <div class="form-field">
+                    {{ form.address(size=100) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Вычислить</button>
+                {{ form.submit }}
+            </form>
+        </div>
+    </div>
+    <script type='text/javascript'>
+        if (!window.location.hash) {
+            window.location = window.location + '#loaded';
+            const userInput = document.querySelector('input#address');
+            userInput.setAttribute('class', 'userInput');
+            userInput.setAttribute('placeholder', 'Введите URL');
+            userInput.setAttribute('required', 'required');
+        }
+    </script>
+
+
+{% endblock %}
